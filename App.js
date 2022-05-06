@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { View, StatusBar, FlatList } from 'react-native';
+import { View, StatusBar, FlatList, Text } from 'react-native';
 import styled from 'styled-components';
 import AddInput from './AddInput'
 import TodoList from './TodoList';
 import Header from './Header';
+import { Switch } from 'react-native';
+
 
 export default function App() {
-    const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
+  const [toggle, SetToggle] = useState(false);
+  const toggleSwitch = () => SetToggle(previousState => !previousState);
 
     const deleteItem = (key) => {
         setData((prevTodo) => {
@@ -26,17 +30,34 @@ export default function App() {
         });
     };
 
+    const ComponentContainer = styled.View`
+    background-color: ${toggle ? 'white' : 'black'};
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    `;
+
+    const ThemeSwitch = styled.Switch`
+    `;
+
     return (
         <ComponentContainer>
             <View>
                 <StatusBar barStyle="light-content" backgroundColor="midnightblue">
                 </StatusBar>
+                
             </View>
-
             <View>
+            <ThemeSwitch
+        trackColor={{ false: "#919091", true: "#504f50" }}
+        thumbColor="white"
+        onValueChange={toggleSwitch}
+        value={toggle}
+      />
             <FlatList
             data={data}
-            ListHeaderComponent={() => <Header />}
+            ListHeaderComponent={() => <Header toggle={toggle}/>}
             keyExtractor={(item) => item.key}
             renderItem={({ item }) => (
               <TodoList item={item} deleteItem={deleteItem} />
@@ -49,11 +70,3 @@ export default function App() {
         </ComponentContainer>
     );
 }
-
-const ComponentContainer = styled.View`
-  background-color: #040406;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;

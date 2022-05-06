@@ -3,6 +3,8 @@ import { StyleSheet, View, TextInput, Text, TouchableOpacity } from 'react-nativ
 
 import styled from "styled-components";
 
+
+
 const ComponentContainer = styled.View`
   flex-direction: row;
 `;
@@ -12,26 +14,7 @@ const InputContainer = styled.View`
   border-radius: 10px;
 `;
 
-const Input = styled.TextInput`
-  font-size: 20px;
-  background-color: white;
-  width: 300px;
-  margin-right: 20px;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-`;
-
-const SubmitButton = styled.TouchableOpacity`
-  width: 50px;
-  justify-content: center;
-  align-items: center;
-  background-color: whitesmoke;
-  margin-bottom: 20px;
-  border-radius: 50px;
-`;
-
-export default function AddInput({ submitHandler}) {
+export default function AddInput({ submitHandler }) {
   const [value, setValue] = useState("");
 
   const onChangeText = (text) => {
@@ -45,7 +28,7 @@ export default function AddInput({ submitHandler}) {
       </InputContainer>
       <SubmitButton 
         onPress={() => {
-          setValue(submitHandler(value));
+          submitHandler(value)
       }}>
         <Text>Enviar</Text>
       </SubmitButton>
@@ -53,8 +36,21 @@ export default function AddInput({ submitHandler}) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    color: 'yellow',
-  },
-});
+const Input = styled.TextInput`
+font-size: 20px;
+background-color: grey;
+width: 300px;
+margin-right: 20px;
+padding: 10px;
+margin-bottom: 20px;
+border-radius: 10px;
+`;
+
+const SubmitButton = styled.TouchableOpacity`
+  width: 50px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: grey;
+  border-radius: 50px;
+`;
