@@ -3,8 +3,6 @@ import { StyleSheet, View, TextInput, Text, TouchableOpacity } from 'react-nativ
 
 import styled from "styled-components";
 
-
-
 const ComponentContainer = styled.View`
   flex-direction: row;
 `;
@@ -38,7 +36,7 @@ export default function AddInput({ submitHandler }) {
 
 const Input = styled.TextInput`
 font-size: 20px;
-background-color: grey;
+background-color: whitesmoke;
 width: 300px;
 margin-right: 20px;
 padding: 10px;
@@ -51,6 +49,6 @@ const SubmitButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  background-color: grey;
+  background-color: whitesmoke;
   border-radius: 50px;
 `;

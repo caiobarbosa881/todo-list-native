@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import AddInput from './AddInput'
 import TodoList from './TodoList';
 import Header from './Header';
-import { Switch } from 'react-native';
-
 
 export default function App() {
   const [data, setData] = useState([]);
