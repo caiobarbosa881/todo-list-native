@@ -44,7 +44,6 @@ export default function App() {
             <View>
                 <StatusBar barStyle="light-content" backgroundColor="midnightblue">
                 </StatusBar>
-                
             </View>
             <View>
             <ThemeSwitch
