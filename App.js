@@ -9,24 +9,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function App() {
   const [data, setData] = useState([]);
   const [toggle, SetToggle] = useState(false);
+  const [storedData, setStoredData] = useState([]);
   const toggleSwitch = () => SetToggle(previousState => !previousState);
-  const [ola, setOla] = useState([]);
 
-  const storeNewData = async () => {
-    try {
-      await AsyncStorage.setItem(
-        '@todo:tasks',
-        JSON.stringify(data)
-      );
-    } catch (error) {
-      
-    }
-  };
+  useEffect(() => {
+    storeNewData(data)
+  }, [data])
   
   const getData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('@todo:tasks');
-       setOla(jsonValue != null ? JSON.parse(jsonValue) : null);
+       setStoredData(JSON.parse(jsonValue));
     } catch(e) {}
   }
 
@@ -37,8 +30,7 @@ export default function App() {
         });
       };
 
-    const submitHandler = async (value) => {
-      try {
+    const submitHandler = (value) => {
         setData((prevTodo) => {
             return [
             {
@@ -48,7 +40,18 @@ export default function App() {
             ...prevTodo,
         ];
         })
-      } catch {}
+    };
+
+    const storeNewData = async (newData) => {
+      try {
+        await AsyncStorage.setItem(
+          '@todo:tasks',
+          JSON.stringify(newData)
+        );
+      } catch (error) {
+        
+      }
+      getData()
     };
 
     const ComponentContainer = styled.View`
@@ -76,7 +79,7 @@ export default function App() {
         value={toggle}
       />
             <FlatList
-            data={ola}
+            data={storedData}
             ListHeaderComponent={() => <Header toggle={toggle}/>}
             keyExtractor={(item) => item.key}
             renderItem={({ item }) => (
@@ -85,7 +88,7 @@ export default function App() {
           />
                 <View>
                 <Text>{}</Text>
-                    <AddInput submitHandler={submitHandler} storeNewData={storeNewData} getData={getData}/>
+                    <AddInput submitHandler={submitHandler}/>
                 </View>
             </View>
         </ComponentContainer>

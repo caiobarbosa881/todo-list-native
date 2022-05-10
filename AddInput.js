@@ -21,7 +21,7 @@ const Input = styled.TextInput`
         border-radius: 10px;
     `;
 
-export default function AddInput({ submitHandler, storeNewData, getData }) {
+export default function AddInput({ submitHandler }) {
   const [value, setValue] = useState("");
 
   const onChangeText = (text) => {
@@ -36,8 +36,6 @@ export default function AddInput({ submitHandler, storeNewData, getData }) {
       <SubmitButton 
         onPress={() => {
           submitHandler(value)
-          storeNewData()
-          getData()
       }}>
         <Text>Enviar</Text>
       </SubmitButton>
