@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Switch } from 'react-native'
 
 let today = new Date().toISOString().slice(0, 10);
 let dia = [today.slice(8, 10)]

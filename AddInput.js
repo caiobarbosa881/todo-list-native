@@ -21,7 +21,7 @@ const Input = styled.TextInput`
         border-radius: 10px;
     `;
 
-export default function AddInput({ submitHandler }) {
+export default function AddInput({ submitHandler, storeNewData, getData }) {
   const [value, setValue] = useState("");
 
   const onChangeText = (text) => {
@@ -36,13 +36,14 @@ export default function AddInput({ submitHandler }) {
       <SubmitButton 
         onPress={() => {
           submitHandler(value)
+          storeNewData()
+          getData()
       }}>
         <Text>Enviar</Text>
       </SubmitButton>
     </ComponentContainer>
   );
 }
-
 
 const SubmitButton = styled.TouchableOpacity`
   width: 50px;
