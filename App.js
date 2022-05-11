@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StatusBar, FlatList, Text } from 'react-native';
+import { View, StatusBar, FlatList } from 'react-native';
 import styled from 'styled-components';
 import AddInput from './AddInput'
 import TodoList from './TodoList';
@@ -66,31 +66,29 @@ export default function App() {
     `;
 
     return (
-        <ComponentContainer>
-            <View>
-                <StatusBar barStyle="light-content" backgroundColor="midnightblue">
-                </StatusBar>
-            </View>
-            <View>
-            <ThemeSwitch
-        trackColor={{ false: "#919091", true: "#504f50" }}
-        thumbColor="white"
-        onValueChange={toggleSwitch}
-        value={toggle}
-      />
-            <FlatList
-            data={storedData}
-            ListHeaderComponent={() => <Header toggle={toggle}/>}
-            keyExtractor={(item) => item.key}
-            renderItem={({ item }) => (
-              <TodoList item={item} deleteItem={deleteItem} />
-            )}
-          />
-                <View>
-                <Text>{}</Text>
-                    <AddInput submitHandler={submitHandler}/>
-                </View>
-            </View>
-        </ComponentContainer>
+      <View> 
+        <StatusBar backgroundColor="#3F48CC"/>
+          <ComponentContainer>
+              <View>
+              <ThemeSwitch
+          trackColor={{ false: "#919091", true: "#504f50" }}
+          thumbColor="white"
+          onValueChange={toggleSwitch}
+          value={toggle}
+        />
+              <FlatList
+              data={storedData}
+              ListHeaderComponent={() => <Header toggle={toggle}/>}
+              keyExtractor={(item) => item.key}
+              renderItem={({ item }) => (
+                <TodoList item={item} deleteItem={deleteItem} />
+              )}
+            />
+                  <View>
+                      <AddInput submitHandler={submitHandler}/>
+                  </View>
+              </View>
+          </ComponentContainer>
+      </View>
     );
 }

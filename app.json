@@ -6,7 +6,12 @@
     "icon": "./assets/taskicon.png",
     "splash": {
       "image": "./assets/splash1.png",
-      "resideMode": "contain"
+      "resideMode": "cover",
+      "backgroundColor": "#3F48CC"
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#3F48CC",
+      "barStyle":"light-content"
     },
     "assetBundlePatterns": [
       "**/*"
