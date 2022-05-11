@@ -7,7 +7,7 @@ let mes = [today.slice(5, 7)]
 let ano = [today.slice(0, 4)]
 let dataDeHoje = `${dia}/${mes}/${ano}`
 
-export default function Header({toggle}) {
+export default function Header({ toggle }) {
   const HeaderText = styled.Text`
   font-size: 30px;
   color: ${toggle ? 'black' : 'white'};
@@ -18,11 +18,11 @@ export default function Header({toggle}) {
   font-size: 20px;
   margin-right: 20px;
   `;
-  
+
   return (
     <ComponentContainer>
       <HeaderText>Lista de Tarefas</HeaderText>
-     
+
       <HeaderList>{dataDeHoje}</HeaderList>
     </ComponentContainer>
   );
@@ -34,6 +34,3 @@ const ComponentContainer = styled.View`
   justify-content: space-between;
   align-items: center;
 `;
-
-
-

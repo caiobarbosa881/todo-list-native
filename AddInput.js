@@ -1,5 +1,5 @@
-import React, { useState} from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { Text } from 'react-native';
 import styled from "styled-components";
 
 const ComponentContainer = styled.View`
@@ -27,16 +27,16 @@ export default function AddInput({ submitHandler }) {
   const onChangeText = (text) => {
     setValue(text);
   }
-  
+
   return (
     <ComponentContainer>
       <InputContainer>
         <Input placeholder="Adicionar Tarefa..." onChangeText={onChangeText} />
       </InputContainer>
-      <SubmitButton 
+      <SubmitButton
         onPress={() => {
           submitHandler(value)
-      }}>
+        }}>
         <Text>Enviar</Text>
       </SubmitButton>
     </ComponentContainer>

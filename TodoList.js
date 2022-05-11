@@ -46,14 +46,6 @@ const TextItem = styled.Text`
   margin-right: 20px;
 `;
 
-const TextDate = styled.Text`
-  color: goldenrod;
-  font-size: 15px;
-  margin-right: 20px;
-  border-radius: 10px;
-  width: 40px;
-`;
-
 const IconContainer = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
