@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, StatusBar, FlatList } from 'react-native';
+import { View, StatusBar, FlatList, StyleSheet } from 'react-native';
 import styled from 'styled-components';
 import AddInput from './AddInput'
 import TodoList from './TodoList';
 import Header from './Header';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Icon from 'react-native-vector-icons/Feather';
 
 export default function App() {
   const [data, setData] = useState([]);
@@ -70,6 +71,7 @@ export default function App() {
         <StatusBar backgroundColor="#3F48CC"/>
           <ComponentContainer>
               <View>
+               {toggle ? <Icon style={style.icon} name="sun" size={28}/> : <Icon style={style.icon} name="sun" size={28} color={'#fff'}/>} 
               <ThemeSwitch
           trackColor={{ false: "#919091", true: "#504f50" }}
           thumbColor="white"
@@ -92,3 +94,11 @@ export default function App() {
       </View>
     );
 }
+
+const style = StyleSheet.create({
+  icon:{
+    marginTop: 10,
+    position: 'absolute',
+    right: 50,
+  }
+})
