@@ -10,12 +10,34 @@ import Icon from 'react-native-vector-icons/Feather';
 export default function App() {
   const [listData, setListData] = useState([]);
   const [toggle, setToggle] = useState(false);
+  const [storedToggle, setStoredToggle] = useState(false);
   const [storedData, setStoredData] = useState([]);
   const toggleThemeSwitch = () => setToggle(!toggle);
 
   useEffect(() => {
     storeNewData(listData)
   }, [listData])
+
+  useEffect(() => {
+    storeThemeData(toggle)
+  }, [toggle])
+
+  const storeThemeData = async (newThemeData) => {
+    try{
+      await AsyncStorage.setItem(
+        '@theme:toggleValue',
+        JSON.stringify(toggle)
+      );
+    } catch(error) {}
+    getThemeData();
+  }
+
+  const getThemeData = async () => {
+    try {
+      const themeValue = await AsyncStorage.getItem('@theme:toggleValue');
+      setStoredToggle(JSON.parse(themeValue));
+    } catch(e) {}
+  }
 
   const getStoredData = async () => {
     try {
@@ -49,9 +71,7 @@ export default function App() {
         '@todo:tasks',
         JSON.stringify(newData)
       );
-    } catch (error) {
-
-    }
+    } catch (error) {}
     getStoredData()
   };
 
@@ -71,12 +91,12 @@ export default function App() {
       <StatusBar backgroundColor="#3F48CC" />
       <ComponentContainer>
         <View>
-          {toggle ? <Icon style={style.icon} name="sun" size={28} /> : <Icon style={style.icon} name="sun" size={28} color={'#fff'} />}
+          {storedToggle ? <Icon style={style.icon} name="sun" size={28} /> : <Icon style={style.icon} name="sun" size={28} color={'#fff'} />}
           <ThemeSwitch
             trackColor={{ false: "#919091", true: "#504f50" }}
             thumbColor="white"
             onValueChange={toggleThemeSwitch}
-            value={toggle}
+            value={storedToggle}
           />
           <FlatList
             data={storedData}
