@@ -28,8 +28,8 @@ export default function App() {
         '@theme:toggleValue',
         JSON.stringify(toggle)
       );
+      await getThemeData();
     } catch(error) {}
-    getThemeData();
   }
 
   const getThemeData = async () => {
@@ -39,17 +39,9 @@ export default function App() {
     } catch(e) {}
   }
 
-  const getStoredData = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem('@todo:tasks');
-      setStoredData(JSON.parse(jsonValue));
-    } catch (e) { }
-  }
-
   const deleteItem = (key) => {
     setListData((prevTodo) => {
       return prevTodo.filter((todo) => todo.key != key);
-
     });
   };
 
@@ -65,14 +57,21 @@ export default function App() {
     })
   };
 
+  const getStoredData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('@todo:tasks');
+      setStoredData(JSON.parse(jsonValue));
+    } catch (e) { }
+  }
+
   const storeNewData = async (newData) => {
     try {
       await AsyncStorage.setItem(
         '@todo:tasks',
         JSON.stringify(newData)
       );
+      await getStoredData()
     } catch (error) {}
-    getStoredData()
   };
 
   const ComponentContainer = styled.View`
