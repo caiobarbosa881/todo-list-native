@@ -61,6 +61,7 @@ export default function App() {
     try {
       const jsonValue = await AsyncStorage.getItem('@todo:tasks');
       setStoredData(JSON.parse(jsonValue));
+      alert(JSON.stringify(storedData))
     } catch (e) { }
   }
 
