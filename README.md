@@ -9,6 +9,7 @@ Create a mobile app for tasks
 - [X] Theme Changer
 - [X] Today Date(brazil date format)
 - [X] Persist Data in Device
+- [ ] Apply Clean Code
 
 ## 💻 Dependencies
 
